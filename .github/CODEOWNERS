@@ -1,0 +1,6 @@
+# Global ownership. GitHub branch/ruleset protection requires this review for all changes.
+* @ParkPawapon
+
+# Security and governance files stay under explicit owner review.
+.github/ @ParkPawapon
+docs/repository-security-rules.md @ParkPawapon
