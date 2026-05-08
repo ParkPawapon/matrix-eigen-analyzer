@@ -1,6 +1,6 @@
-# Matrix Eigen Analyzer
+# EigenScope
 
-Landing page foundation for Assignment #2 CSS114, a future matrix eigenvalue, eigenvector, and diagonalization tool.
+Landing page foundation for EigenScope, a future matrix eigenvalue, eigenvector, and diagonalization analysis system.
 
 ## Tech Stack
 

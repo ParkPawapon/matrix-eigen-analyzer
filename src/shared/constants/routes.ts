@@ -1,6 +1,6 @@
 export const routes = {
   home: "/",
-  assignmentOverview: "#assignment-overview",
+  projectOverview: "#project-overview",
   features: "#features",
   technicalStack: "#technical-stack",
 } as const;
