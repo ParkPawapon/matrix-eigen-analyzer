@@ -11,13 +11,12 @@ export function Reveal({ children, transition, ...props }: RevealProps) {
   return (
     <motion.div
       initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
+      animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
       transition={{
         duration: voiceboxTokens.motion.revealDuration,
         ease: voiceboxTokens.motion.revealEase,
         ...transition,
       }}
-      viewport={{ once: true, margin: "-10%" }}
-      whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
       {...props}
     >
       {children}

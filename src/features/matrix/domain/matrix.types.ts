@@ -1,6 +1,14 @@
 export type MatrixSize = 2 | 3;
 export type MatrixScalar = number;
 
+export type ComplexNumber = Readonly<{
+  real: number;
+  imaginary: number;
+}>;
+
+export type ComplexVector = readonly ComplexNumber[];
+export type ComplexMatrix = readonly ComplexNumber[][];
+
 export type Matrix2x2 = readonly [
   readonly [MatrixScalar, MatrixScalar],
   readonly [MatrixScalar, MatrixScalar],

@@ -21,7 +21,7 @@ export function ProjectOverviewSection() {
               {projectOverviewContent.eyebrow}
             </p>
             <h2
-              className="mt-4 max-w-3xl font-display text-4xl uppercase leading-none md:text-6xl"
+              className="mt-4 max-w-3xl break-words font-display text-4xl uppercase leading-none md:text-5xl xl:text-6xl"
               id="project-overview-title"
             >
               {projectOverviewContent.title}
@@ -117,11 +117,11 @@ export function ProjectOverviewSection() {
             <aside className="border-2 border-border-strong bg-surface p-6">
               <p className="font-mono text-xs uppercase text-accent">Interaction Contract</p>
               <h3 className="mt-3 font-display text-3xl uppercase leading-tight">
-                Scope first. Calculator later.
+                Scope first. Calculator live.
               </h3>
               <p className="mt-5 text-base leading-7 text-text-secondary">
-                This overview makes the assignment brief explorable before the matrix engine exists.
-                Each disclosure maps a future user-facing result to an acceptance checkpoint.
+                This overview keeps the assignment brief auditable while the workbench above handles
+                the live matrix input and diagonalization output.
               </p>
             </aside>
           </div>
@@ -129,7 +129,7 @@ export function ProjectOverviewSection() {
           <div className="flex items-center gap-3 border-2 border-border-strong bg-background px-5 py-4">
             <Rows3 aria-hidden="true" className="h-5 w-5 text-accent" strokeWidth={2.5} />
             <p className="text-sm font-semibold uppercase">
-              This section defines scope only. Calculation logic stays in the future matrix feature.
+              The scope map and live calculator now share the same matrix feature boundary.
             </p>
           </div>
         </div>

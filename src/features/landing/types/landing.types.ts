@@ -1,4 +1,10 @@
-export type LandingSectionId = "hero" | "project-overview" | "features" | "technical-stack" | "cta";
+export type LandingSectionId =
+  | "hero"
+  | "calculator"
+  | "project-overview"
+  | "features"
+  | "technical-stack"
+  | "cta";
 
 export type LandingSectionSummary = {
   id: LandingSectionId;
