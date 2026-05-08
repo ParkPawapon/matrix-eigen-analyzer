@@ -3,6 +3,7 @@ import Link from "next/link";
 import { routes } from "@/shared/constants/routes";
 
 const navItems = [
+  { href: routes.calculator, label: "Calculator" },
   { href: routes.projectOverview, label: "Overview" },
   { href: routes.features, label: "Features" },
   { href: routes.technicalStack, label: "Stack" },

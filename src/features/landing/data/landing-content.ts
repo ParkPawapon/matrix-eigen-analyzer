@@ -6,11 +6,12 @@ import type {
 
 export const landingContent = {
   title: "EigenScope",
-  summary: "Matrix diagonalization analysis system.",
+  summary: "Matrix diagonalization analysis system for 2x2 and 3x3 matrices.",
 } as const;
 
 export const landingSections: readonly LandingSectionSummary[] = [
   { id: "hero", label: "Hero" },
+  { id: "calculator", label: "Calculator" },
   { id: "project-overview", label: "Project overview" },
   { id: "features", label: "Feature outline" },
   { id: "technical-stack", label: "Technical stack" },

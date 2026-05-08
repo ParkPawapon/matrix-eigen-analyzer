@@ -1,6 +1,7 @@
 export const voiceboxFontStacks = {
-  display: ['"Archivo Black"', "Impact", '"Arial Black"', "sans-serif"],
+  display: ["var(--font-display)", '"Archivo Black"', "Impact", '"Arial Black"', "sans-serif"],
   body: [
+    "var(--font-body)",
     '"Work Sans"',
     "-apple-system",
     "BlinkMacSystemFont",
@@ -9,7 +10,7 @@ export const voiceboxFontStacks = {
     "Arial",
     "sans-serif",
   ],
-  mono: ['"Space Mono"', '"Courier New"', "Consolas", "monospace"],
+  mono: ["var(--font-mono)", '"Space Mono"', '"Courier New"', "Consolas", "monospace"],
 } as const;
 
 export const voiceboxTokens = {
