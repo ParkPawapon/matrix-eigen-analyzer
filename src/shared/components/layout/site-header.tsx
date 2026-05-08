@@ -3,7 +3,7 @@ import Link from "next/link";
 import { routes } from "@/shared/constants/routes";
 
 const navItems = [
-  { href: routes.assignmentOverview, label: "Assignment" },
+  { href: routes.projectOverview, label: "Overview" },
   { href: routes.features, label: "Features" },
   { href: routes.technicalStack, label: "Stack" },
 ] as const;
@@ -25,7 +25,7 @@ export function SiteHeader() {
             src="/brand/site-logo.png"
             width={36}
           />
-          CSS114
+          EigenScope
         </Link>
         <nav aria-label="Primary navigation" className="hidden items-center gap-6 md:flex">
           {navItems.map((item) => (
