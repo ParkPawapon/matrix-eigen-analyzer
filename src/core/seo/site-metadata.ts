@@ -10,6 +10,10 @@ export const siteMetadata: Metadata = {
   },
   description: "Landing page scaffold for a matrix eigenvalue and diagonalization assignment tool.",
   applicationName: "Matrix Eigen Analyzer",
+  icons: {
+    icon: [{ url: "/icon.png", sizes: "512x512", type: "image/png" }],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+  },
   openGraph: {
     title: "Assignment #2 CSS114",
     description:
