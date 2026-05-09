@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { landingContent } from "@/features/landing/data/landing-content";
+import { Reveal } from "@/shared/components/motion/reveal";
 import { DisplayHeading } from "@/shared/components/typography/display-heading";
 import { routes } from "@/shared/constants/routes";
 
@@ -8,7 +9,7 @@ export function HeroSection() {
   return (
     <section className="flex min-h-[calc(100vh-4.375rem)] items-center border-b-2 border-border-strong bg-background px-6 py-12 md:py-20">
       <div className="mx-auto grid max-w-screen-xl gap-10 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-stretch">
-        <div className="flex min-h-[32rem] flex-col justify-between border-2 border-border-strong bg-primary p-6 text-background md:p-8">
+        <Reveal className="flex min-h-[32rem] flex-col justify-between border-2 border-border-strong bg-primary p-6 text-background md:p-8">
           <div className="flex items-center justify-between gap-6 border-b-2 border-background pb-5">
             <p className="font-mono text-xs uppercase text-text-tertiary">
               CSS114 / Matrix Diagonalization
@@ -45,9 +46,13 @@ export function HeroSection() {
               Read Brief
             </Link>
           </div>
-        </div>
+        </Reveal>
 
-        <aside className="grid border-2 border-border-strong bg-surface">
+        <Reveal
+          className="grid border-2 border-border-strong bg-surface"
+          delay={0.08}
+          variant="press"
+        >
           <div className="border-b-2 border-border-strong p-6">
             <p className="font-mono text-xs uppercase text-accent">Now Interactive</p>
             <p className="mt-4 font-display text-4xl uppercase leading-none">2x2 / 3x3</p>
@@ -70,7 +75,7 @@ export function HeroSection() {
               </p>
             </div>
           </div>
-        </aside>
+        </Reveal>
       </div>
     </section>
   );
