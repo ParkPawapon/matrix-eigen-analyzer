@@ -20,19 +20,21 @@ export const landingSections: readonly LandingSectionSummary[] = [
 
 export const projectOverviewContent = {
   eyebrow: "Project Overview",
-  title: "Matrix diagonalization brief, mapped into product scope.",
+  title: "A guided tour of the diagonalization workflow.",
   description:
-    "EigenScope will guide a user from a 2x2 or 3x3 matrix input toward eigenvalues, eigenvectors, and a clear diagonalization verdict.",
+    "EigenScope turns the assignment into a readable sequence: enter a matrix, solve the characteristic equation, inspect the eigenvectors, then decide whether a diagonal form exists.",
   matrixOptions: [
     {
       size: 2,
       label: "2x2 Matrix",
-      description: "Compact input mode for the required two-dimensional case.",
+      description:
+        "The compact case. Four values define A, and the characteristic equation is quadratic.",
     },
     {
       size: 3,
       label: "3x3 Matrix",
-      description: "Expanded input mode for the required three-dimensional case.",
+      description:
+        "The expanded case. Nine values define A, and the characteristic equation is cubic.",
     },
   ] satisfies readonly MatrixPreviewOption[],
   requirements: [
@@ -41,46 +43,50 @@ export const projectOverviewContent = {
       order: 1,
       title: "Find eigenvalues",
       shortLabel: "Eigenvalues",
-      detail: "The system must expose the scalar values that satisfy the characteristic equation.",
-      acceptance: "The result area will list all eigenvalues for the selected matrix size.",
+      definition:
+        "Eigenvalues are the scalars that keep a vector on the same line after A is applied.",
+      formula: "det(A - lambda I) = 0",
+      output: "The result panel lists every root found for the selected 2x2 or 3x3 matrix.",
     },
     {
       id: "eigenvectors",
       order: 2,
       title: "Find eigenvectors",
       shortLabel: "Eigenvectors",
-      detail: "The system must connect each eigenvalue to its corresponding vector space.",
-      acceptance: "Each eigenvalue will have an eigenvector explanation or basis representation.",
+      definition: "Eigenvectors are non-zero vectors that only scale when multiplied by A.",
+      formula: "(A - lambda I)v = 0, v != 0",
+      output: "Each eigenvalue is paired with an eigenvector basis when one is available.",
     },
     {
       id: "diagonalizable-check",
       order: 3,
       title: "Check diagonalizability",
       shortLabel: "Check",
-      detail: "The system must decide whether the matrix has enough independent eigenvectors.",
-      acceptance: "The verdict will clearly state diagonalizable or not diagonalizable.",
+      definition:
+        "A matrix is diagonalizable when it has enough independent eigenvectors to form a basis.",
+      formula: "sum dim(E_lambda) = n",
+      output:
+        "The report states whether the matrix is diagonalizable over the real or complex field.",
     },
     {
       id: "diagonal-matrices",
       order: 4,
       title: "Find P, P^-1, and D",
       shortLabel: "P and D",
-      detail: "When valid, the system must organize the diagonalization relation D = P^-1 A P.",
-      acceptance: "The output will show P, P^-1, and D with the relationship preserved.",
+      definition:
+        "P is built from independent eigenvectors, and D stores the matching eigenvalues.",
+      formula: "D = P^-1 A P",
+      output: "When valid, the report shows P, P^-1, and the diagonal matrix D.",
     },
     {
       id: "non-diagonalizable-reason",
       order: 5,
       title: "Explain failure reasons",
       shortLabel: "Reason",
-      detail: "When invalid, the system must explain why diagonalization is not possible.",
-      acceptance: "The user receives a plain-language reason instead of a silent failure.",
+      definition:
+        "Failure is usually caused by too few independent eigenvectors for the matrix size.",
+      formula: "geometric multiplicity < algebraic multiplicity",
+      output: "If P cannot be formed, the report explains the missing eigenvector basis clearly.",
     },
   ] satisfies readonly ProjectRequirement[],
-  deliveryFacts: [
-    "Individual project",
-    "Submit through LEB2",
-    "Due 29/05/69",
-    "Implementation language is flexible",
-  ],
 } as const;

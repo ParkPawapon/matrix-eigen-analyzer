@@ -1,4 +1,4 @@
-import { CheckCircle2, ListChecks, Rows3, SquareStack } from "lucide-react";
+import { ArrowRight, CheckCircle2, ListChecks, Rows3, SquareStack } from "lucide-react";
 import { projectOverviewContent } from "@/features/landing/data/landing-content";
 import type { MatrixPreviewMode } from "@/features/landing/types/landing.types";
 
@@ -7,6 +7,13 @@ const matrixCellValues: Record<MatrixPreviewMode, readonly string[]> = {
   3: ["a11", "a12", "a13", "a21", "a22", "a23", "a31", "a32", "a33"],
 };
 
+const workflowSteps = [
+  "Input matrix A",
+  "Solve det(A - lambda I)",
+  "Build eigenvector basis",
+  "Return diagonalization verdict",
+] as const;
+
 export function ProjectOverviewSection() {
   return (
     <section
@@ -14,124 +21,150 @@ export function ProjectOverviewSection() {
       className="border-b-2 border-border-strong bg-background px-6 py-16 md:py-24"
       id="project-overview"
     >
-      <div className="mx-auto grid max-w-screen-xl gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-12">
-        <div className="flex flex-col justify-between border-2 border-border-strong bg-surface p-6 md:p-8">
+      <div className="mx-auto max-w-screen-xl">
+        <div className="grid gap-8 border-b-2 border-border-strong pb-10 lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.44fr)] lg:items-end">
           <div>
             <p className="font-mono text-xs uppercase text-accent">
               {projectOverviewContent.eyebrow}
             </p>
             <h2
-              className="mt-4 max-w-3xl break-words font-display text-4xl uppercase leading-none md:text-5xl xl:text-6xl"
+              className="mt-4 max-w-5xl break-words font-display text-4xl uppercase leading-none md:text-6xl xl:text-7xl"
               id="project-overview-title"
             >
               {projectOverviewContent.title}
             </h2>
-            <p className="mt-6 max-w-2xl text-base leading-7 text-text-secondary md:text-lg">
+            <p className="mt-6 max-w-3xl text-base leading-7 text-text-secondary md:text-lg">
               {projectOverviewContent.description}
             </p>
           </div>
 
-          <dl className="mt-10 grid gap-0 border-2 border-border-strong bg-background sm:grid-cols-2">
-            {projectOverviewContent.deliveryFacts.map((fact) => (
-              <div className="border-border-strong p-4 odd:border-b sm:odd:border-r" key={fact}>
-                <dt className="font-mono text-[0.7rem] uppercase text-text-tertiary">Brief</dt>
-                <dd className="mt-1 text-sm font-bold uppercase">{fact}</dd>
-              </div>
-            ))}
-          </dl>
+          <div className="border-2 border-border-strong bg-primary p-6 text-background">
+            <p className="font-mono text-xs uppercase text-text-tertiary">Target relation</p>
+            <p className="mt-5 break-words font-mono text-2xl font-black uppercase leading-tight md:text-3xl">
+              D = P^-1 A P
+            </p>
+            <p className="mt-5 border-t-2 border-background pt-5 text-sm font-semibold leading-6 text-surface-raised">
+              The interface is organized around this relation: A is the input, P is the eigenvector
+              basis, and D is the diagonal result when the basis is valid.
+            </p>
+          </div>
         </div>
 
-        <div className="grid gap-6">
-          <div className="border-2 border-border-strong">
-            <div className="flex items-center justify-between border-b-2 border-border-strong bg-primary px-5 py-4 text-background">
-              <div>
-                <p className="font-mono text-xs uppercase text-text-tertiary">Input Boundary</p>
-                <h3 className="font-display text-2xl uppercase">Matrix Preview</h3>
+        <div className="mt-10 grid gap-8 lg:grid-cols-[23rem_minmax(0,1fr)]">
+          <aside className="lg:sticky lg:top-24 lg:self-start">
+            <div className="border-2 border-border-strong bg-surface">
+              <div className="flex items-center justify-between border-b-2 border-border-strong bg-primary px-5 py-4 text-background">
+                <div>
+                  <p className="font-mono text-xs uppercase text-text-tertiary">Input boundary</p>
+                  <h3 className="font-display text-2xl uppercase">Matrix Modes</h3>
+                </div>
+                <SquareStack aria-hidden="true" className="h-6 w-6" strokeWidth={2.5} />
               </div>
-              <SquareStack aria-hidden="true" className="h-6 w-6" strokeWidth={2.5} />
-            </div>
 
-            <div className="grid gap-4 p-5 md:p-6">
-              {projectOverviewContent.matrixOptions.map((option, index) => (
-                <details
-                  className="group border-2 border-border-strong bg-background"
-                  key={option.size}
-                  name="matrix-preview"
-                  open={index === 0}
-                >
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 text-sm font-bold uppercase transition-colors marker:content-none group-open:bg-primary group-open:text-background hover:bg-surface-raised [&::-webkit-details-marker]:hidden">
-                    <span>{option.label}</span>
-                    <span className="font-mono text-xs">
-                      {option.size}x{option.size}
-                    </span>
-                  </summary>
-                  <div className="grid gap-5 border-t-2 border-border-strong p-5 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)]">
-                    <p className="text-sm leading-6 text-text-secondary">{option.description}</p>
-                    <MatrixPreview size={option.size} />
-                  </div>
-                </details>
-              ))}
-            </div>
-          </div>
-
-          <div className="grid gap-6 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
-            <div className="border-2 border-border-strong">
-              <div className="flex items-center gap-3 border-b-2 border-border-strong px-5 py-4">
-                <ListChecks aria-hidden="true" className="h-5 w-5 text-accent" strokeWidth={2.5} />
-                <h3 className="font-display text-xl uppercase">Required Outcomes</h3>
-              </div>
-              <div className="divide-y-2 divide-border-strong">
-                {projectOverviewContent.requirements.map((requirement) => (
+              <div className="grid gap-4 p-5">
+                {projectOverviewContent.matrixOptions.map((option, index) => (
                   <details
-                    className="group bg-background"
-                    key={requirement.id}
-                    name="project-requirement"
-                    open={requirement.order === 1}
+                    className="group border-2 border-border-strong bg-background"
+                    key={option.size}
+                    name="matrix-preview"
+                    open={index === 0}
                   >
-                    <summary className="flex cursor-pointer list-none items-center gap-4 px-5 py-4 text-left transition-colors marker:content-none group-open:bg-primary group-open:text-background hover:bg-surface [&::-webkit-details-marker]:hidden">
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-4 py-3 text-sm font-black uppercase transition-colors marker:content-none group-open:bg-primary group-open:text-background hover:bg-surface-raised [&::-webkit-details-marker]:hidden">
+                      <span>{option.label}</span>
                       <span className="font-mono text-xs">
-                        {requirement.order.toString().padStart(2, "0")}
+                        {option.size}x{option.size}
                       </span>
-                      <span className="text-sm font-bold uppercase">{requirement.shortLabel}</span>
                     </summary>
-                    <div className="border-t-2 border-border-strong bg-surface p-5">
-                      <p className="font-mono text-xs uppercase text-accent">
-                        Requirement {requirement.order}
-                      </p>
-                      <h4 className="mt-3 font-display text-2xl uppercase leading-tight">
-                        {requirement.title}
-                      </h4>
-                      <p className="mt-4 text-sm leading-6 text-text-secondary">
-                        {requirement.detail}
-                      </p>
-                      <div className="mt-5 flex items-start gap-3 border-t-2 border-border-strong pt-4">
-                        <CheckCircle2 aria-hidden="true" className="mt-1 h-5 w-5 text-accent" />
-                        <p className="text-sm font-semibold leading-6">{requirement.acceptance}</p>
-                      </div>
+                    <div className="grid gap-4 border-t-2 border-border-strong p-4">
+                      <p className="text-sm leading-6 text-text-secondary">{option.description}</p>
+                      <MatrixPreview size={option.size} />
                     </div>
                   </details>
                 ))}
               </div>
             </div>
+          </aside>
 
-            <aside className="border-2 border-border-strong bg-surface p-6">
-              <p className="font-mono text-xs uppercase text-accent">Interaction Contract</p>
-              <h3 className="mt-3 font-display text-3xl uppercase leading-tight">
-                Scope first. Calculator live.
-              </h3>
-              <p className="mt-5 text-base leading-7 text-text-secondary">
-                This overview keeps the assignment brief auditable while the workbench above handles
-                the live matrix input and diagonalization output.
-              </p>
-            </aside>
-          </div>
+          <div>
+            <div className="mb-4 flex flex-wrap items-center justify-between gap-4 border-2 border-border-strong bg-background px-5 py-4">
+              <div className="flex items-center gap-3">
+                <ListChecks aria-hidden="true" className="h-5 w-5 text-accent" strokeWidth={2.5} />
+                <h3 className="font-display text-2xl uppercase">What the system proves</h3>
+              </div>
+              <p className="font-mono text-xs uppercase text-text-tertiary">5-step tour</p>
+            </div>
 
-          <div className="flex items-center gap-3 border-2 border-border-strong bg-background px-5 py-4">
-            <Rows3 aria-hidden="true" className="h-5 w-5 text-accent" strokeWidth={2.5} />
-            <p className="text-sm font-semibold uppercase">
-              The scope map and live calculator now share the same matrix feature boundary.
-            </p>
+            <ol className="grid gap-4">
+              {projectOverviewContent.requirements.map((requirement) => (
+                <li key={requirement.id}>
+                  <article className="grid border-2 border-border-strong bg-background lg:grid-cols-[13rem_minmax(0,1fr)]">
+                    <div className="border-b-2 border-border-strong bg-primary p-5 text-background lg:border-b-0 lg:border-r-2">
+                      <p className="font-mono text-xs uppercase text-text-tertiary">
+                        Step {requirement.order.toString().padStart(2, "0")}
+                      </p>
+                      <h4 className="mt-4 font-display text-3xl uppercase leading-none">
+                        {requirement.shortLabel}
+                      </h4>
+                    </div>
+
+                    <div className="grid gap-5 p-5 md:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+                      <div>
+                        <p className="font-mono text-xs uppercase text-accent">Meaning</p>
+                        <h5 className="mt-2 font-display text-2xl uppercase leading-tight">
+                          {requirement.title}
+                        </h5>
+                        <p className="mt-3 text-sm leading-6 text-text-secondary">
+                          {requirement.definition}
+                        </p>
+                      </div>
+
+                      <div className="grid gap-3">
+                        <div>
+                          <p className="font-mono text-xs uppercase text-text-tertiary">Formula</p>
+                          <code className="mt-2 block border-2 border-border-strong bg-surface px-4 py-3 font-mono text-sm font-black text-primary">
+                            {requirement.formula}
+                          </code>
+                        </div>
+                        <div className="flex items-start gap-3 border-t-2 border-border-strong pt-3">
+                          <CheckCircle2 aria-hidden="true" className="mt-1 h-5 w-5 text-accent" />
+                          <p className="text-sm font-semibold leading-6">{requirement.output}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                </li>
+              ))}
+            </ol>
           </div>
+        </div>
+
+        <div className="mt-8 grid border-2 border-border-strong bg-surface md:grid-cols-4">
+          {workflowSteps.map((step, index) => (
+            <div
+              className="flex items-center justify-between gap-4 border-border-strong p-4 md:border-r-2 md:last:border-r-0"
+              key={step}
+            >
+              <div>
+                <p className="font-mono text-[0.7rem] uppercase text-text-tertiary">
+                  Tour {(index + 1).toString().padStart(2, "0")}
+                </p>
+                <p className="mt-2 text-sm font-black uppercase leading-5">{step}</p>
+              </div>
+              {index < workflowSteps.length - 1 ? (
+                <ArrowRight
+                  aria-hidden="true"
+                  className="hidden h-5 w-5 shrink-0 text-accent md:block"
+                  strokeWidth={2.5}
+                />
+              ) : (
+                <Rows3
+                  aria-hidden="true"
+                  className="hidden h-5 w-5 shrink-0 text-accent md:block"
+                  strokeWidth={2.5}
+                />
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -142,7 +175,7 @@ function MatrixPreview({ size }: Readonly<{ size: MatrixPreviewMode }>) {
   return (
     <div
       aria-label={`${size} by ${size} matrix preview`}
-      className="grid min-h-48 items-center border-2 border-border-strong bg-surface p-4"
+      className="grid min-h-44 items-center border-2 border-border-strong bg-surface p-4"
     >
       <div
         className="grid gap-2"

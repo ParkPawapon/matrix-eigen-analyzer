@@ -23,8 +23,9 @@ export type ProjectRequirement = {
   order: number;
   title: string;
   shortLabel: string;
-  detail: string;
-  acceptance: string;
+  definition: string;
+  formula: string;
+  output: string;
 };
 
 export type MatrixPreviewMode = 2 | 3;
