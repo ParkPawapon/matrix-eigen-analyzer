@@ -31,7 +31,7 @@ export function SiteHeader() {
         <nav aria-label="Primary navigation" className="hidden items-center gap-6 md:flex">
           {navItems.map((item) => (
             <Link
-              className="text-sm font-bold uppercase tracking-[0.06em]"
+              className="relative inline-flex items-center py-2 text-sm font-black uppercase tracking-[0.06em] text-primary transition-colors duration-200 after:absolute after:bottom-1 after:left-0 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-200 after:ease-out hover:text-accent hover:after:scale-x-100 focus-visible:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 focus-visible:ring-offset-background focus-visible:after:scale-x-100"
               href={item.href}
               key={item.href}
             >
