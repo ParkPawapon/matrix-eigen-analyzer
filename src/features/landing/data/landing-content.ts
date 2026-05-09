@@ -1,6 +1,5 @@
 import type {
   LandingSectionSummary,
-  MatrixPreviewOption,
   ProjectRequirement,
 } from "@/features/landing/types/landing.types";
 
@@ -23,20 +22,6 @@ export const projectOverviewContent = {
   title: "A guided tour of the diagonalization workflow.",
   description:
     "EigenScope turns the assignment into a readable sequence: enter a matrix, solve the characteristic equation, inspect the eigenvectors, then decide whether a diagonal form exists.",
-  matrixOptions: [
-    {
-      size: 2,
-      label: "2x2 Matrix",
-      description:
-        "The compact case. Four values define A, and the characteristic equation is quadratic.",
-    },
-    {
-      size: 3,
-      label: "3x3 Matrix",
-      description:
-        "The expanded case. Nine values define A, and the characteristic equation is cubic.",
-    },
-  ] satisfies readonly MatrixPreviewOption[],
   requirements: [
     {
       id: "eigenvalues",
