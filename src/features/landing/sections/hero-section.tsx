@@ -6,7 +6,7 @@ import { routes } from "@/shared/constants/routes";
 
 export function HeroSection() {
   return (
-    <section className="flex min-h-screen items-center border-b-2 border-border-strong bg-background px-6 py-12 md:py-20">
+    <section className="flex min-h-[calc(100vh-4.375rem)] items-center border-b-2 border-border-strong bg-background px-6 py-12 md:py-20">
       <div className="mx-auto grid max-w-screen-xl gap-10 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-stretch">
         <div className="flex min-h-[32rem] flex-col justify-between border-2 border-border-strong bg-primary p-6 text-background md:p-8">
           <div className="flex items-center justify-between gap-6 border-b-2 border-background pb-5">
