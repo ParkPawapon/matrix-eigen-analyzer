@@ -56,12 +56,12 @@ export function ProjectOverviewSection() {
           <ol className="grid gap-4">
             {projectOverviewContent.requirements.map((requirement) => (
               <li key={requirement.id}>
-                <article className="grid border-2 border-border-strong bg-background lg:grid-cols-[13rem_minmax(0,1fr)]">
-                  <div className="border-b-2 border-border-strong bg-primary p-5 text-background lg:border-b-0 lg:border-r-2">
+                <article className="grid border-2 border-border-strong bg-background lg:grid-cols-[22rem_minmax(0,1fr)]">
+                  <div className="flex flex-col justify-center border-b-2 border-border-strong bg-primary p-5 text-background lg:border-b-0 lg:border-r-2">
                     <p className="font-mono text-xs uppercase text-text-tertiary">
                       Step {requirement.order.toString().padStart(2, "0")}
                     </p>
-                    <h4 className="mt-4 font-display text-3xl uppercase leading-none">
+                    <h4 className="mt-4 whitespace-nowrap font-display text-3xl uppercase leading-none">
                       {requirement.shortLabel}
                     </h4>
                   </div>
