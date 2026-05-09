@@ -27,11 +27,3 @@ export type ProjectRequirement = {
   formula: string;
   output: string;
 };
-
-export type MatrixPreviewMode = 2 | 3;
-
-export type MatrixPreviewOption = {
-  size: MatrixPreviewMode;
-  label: string;
-  description: string;
-};
