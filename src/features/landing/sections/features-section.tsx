@@ -26,21 +26,23 @@ export function FeaturesSection() {
       id="features"
     >
       <div className="mx-auto max-w-screen-xl">
-        <Reveal className="grid gap-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
-          <div>
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
+          <Reveal>
             <p className="font-mono text-xs uppercase text-accent">Feature Outline</p>
-            <h2 className="mt-4 font-display text-5xl uppercase leading-none md:text-7xl">
+            <h2 className="mt-4 max-w-[10ch] break-words font-display text-5xl uppercase leading-none md:text-7xl">
               Built For The Assignment Flow.
             </h2>
-          </div>
+          </Reveal>
           <div className="grid border-2 border-background">
-            {featureRows.map((feature) => {
+            {featureRows.map((feature, index) => {
               const Icon = feature.icon;
 
               return (
-                <div
+                <Reveal
                   className="grid gap-4 border-b-2 border-background p-5 last:border-b-0 md:grid-cols-[3rem_minmax(0,1fr)] md:p-6"
+                  delay={0.04 + index * 0.04}
                   key={feature.title}
+                  variant="press"
                 >
                   <Icon aria-hidden="true" className="h-8 w-8 text-accent" strokeWidth={2.5} />
                   <div>
@@ -49,11 +51,11 @@ export function FeaturesSection() {
                     </h3>
                     <p className="mt-3 text-sm leading-6 text-surface-raised">{feature.detail}</p>
                   </div>
-                </div>
+                </Reveal>
               );
             })}
           </div>
-        </Reveal>
+        </div>
       </div>
     </section>
   );
