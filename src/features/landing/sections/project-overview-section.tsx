@@ -1,13 +1,6 @@
-import { ArrowRight, CheckCircle2, ListChecks, Rows3 } from "lucide-react";
+import { CheckCircle2, ListChecks } from "lucide-react";
 import { projectOverviewContent } from "@/features/landing/data/landing-content";
 import { Reveal } from "@/shared/components/motion/reveal";
-
-const workflowSteps = [
-  "Input matrix A",
-  "Solve det(A - lambda I)",
-  "Build eigenvector basis",
-  "Return diagonalization verdict",
-] as const;
 
 export function ProjectOverviewSection() {
   return (
@@ -101,37 +94,6 @@ export function ProjectOverviewSection() {
               </li>
             ))}
           </ol>
-        </div>
-
-        <div className="mt-8 grid border-2 border-border-strong bg-surface md:grid-cols-4">
-          {workflowSteps.map((step, index) => (
-            <Reveal
-              className="flex items-center justify-between gap-4 border-border-strong p-4 md:border-r-2 md:last:border-r-0"
-              delay={0.04 + index * 0.03}
-              key={step}
-              variant="line"
-            >
-              <div>
-                <p className="font-mono text-[0.7rem] uppercase text-text-tertiary">
-                  Tour {(index + 1).toString().padStart(2, "0")}
-                </p>
-                <p className="mt-2 text-sm font-black uppercase leading-5">{step}</p>
-              </div>
-              {index < workflowSteps.length - 1 ? (
-                <ArrowRight
-                  aria-hidden="true"
-                  className="hidden h-5 w-5 shrink-0 text-accent md:block"
-                  strokeWidth={2.5}
-                />
-              ) : (
-                <Rows3
-                  aria-hidden="true"
-                  className="hidden h-5 w-5 shrink-0 text-accent md:block"
-                  strokeWidth={2.5}
-                />
-              )}
-            </Reveal>
-          ))}
         </div>
       </div>
     </section>
