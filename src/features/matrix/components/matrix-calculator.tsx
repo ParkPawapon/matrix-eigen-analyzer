@@ -30,6 +30,11 @@ const matrixSizeOptions = [2, 3] as const satisfies readonly MatrixSize[];
 const subscribeToHydration = () => () => undefined;
 const getHydratedSnapshot = () => true;
 const getServerSnapshot = () => false;
+const generatedMatrixScalarRange = {
+  minimum: -4,
+  maximum: 6,
+  decimalScale: 100,
+} as const;
 
 export function MatrixCalculator() {
   const shouldReduceMotion = useReducedMotion();
@@ -220,6 +225,7 @@ function MatrixInputGrid({
                 className="h-full w-full bg-transparent px-2 text-center font-mono text-xl font-bold text-primary outline-none transition-colors group-focus-within:bg-primary group-focus-within:text-background md:text-2xl"
                 inputMode="decimal"
                 onChange={(event) => onCellChange(rowIndex, columnIndex, event.target.value)}
+                step="any"
                 type="number"
                 value={cell}
               />
@@ -429,7 +435,7 @@ function parseDraftMatrix(size: MatrixSize, draftMatrix: MatrixDraft): MatrixInp
 
 function createGeneratedMatrix(size: MatrixSize): MatrixInput {
   const values = Array.from({ length: size }, () =>
-    Array.from({ length: size }, () => Math.floor(Math.random() * 9) - 3),
+    Array.from({ length: size }, () => createGeneratedScalar()),
   );
 
   if (size === 2) {
@@ -444,4 +450,25 @@ function createGeneratedMatrix(size: MatrixSize): MatrixInput {
     [values[1][0] ?? 0, values[1][1] ?? 1, values[1][2] ?? 0],
     [values[2][0] ?? 0, values[2][1] ?? 0, values[2][2] ?? 1],
   ] satisfies Matrix3x3;
+}
+
+function createGeneratedScalar(): number {
+  const range = generatedMatrixScalarRange.maximum - generatedMatrixScalarRange.minimum;
+  const rawValue = generatedMatrixScalarRange.minimum + Math.random() * range;
+  const roundedValue =
+    Math.round(rawValue * generatedMatrixScalarRange.decimalScale) /
+    generatedMatrixScalarRange.decimalScale;
+
+  if (!Number.isInteger(roundedValue)) {
+    return normalizeGeneratedScalar(roundedValue);
+  }
+
+  const decimalValue =
+    roundedValue >= generatedMatrixScalarRange.maximum ? roundedValue - 0.25 : roundedValue + 0.25;
+
+  return normalizeGeneratedScalar(decimalValue);
+}
+
+function normalizeGeneratedScalar(value: number): number {
+  return Object.is(value, -0) ? 0 : value;
 }
